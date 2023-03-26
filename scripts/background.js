@@ -1,5 +1,5 @@
 var video = document.createElement("video");
-video.src = "../bg_storm.mp4";
+video.src = "../videos/bg_storm.mp4";
 video.autoplay = true;
 video.loop = true;
 video.muted = true;

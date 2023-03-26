@@ -4,14 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../style/style.css">
-	<script src="../scripts/background.js" async></script>
     <script src="../scripts/scirpts.js" async></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../scripts/ordering.js" async></script>
     <title>BSHOP | МЕРЧ</title>
 </head>
 <body>
 	<div class="head_box">
         <div class="hd_inbox">
-            <button class="btn_sidebar">
+            <button title="btn-logo" class="btn_sidebar">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -23,29 +24,69 @@
     <div class="main_container">
         <div class="sidebar">
             <ul>
-                <li><a href="index.html" class="nohov"><img class="btn_img_home alo" src="../images/logo_bebxshop.png"></a></li>
+                <li><a href="index.html" class="nohov"><img class="btn_img_home alo" src="../images/logo_bebxshop.png" alt="logo"></a></li>
                 <li><a href="cart.html">Корзина</a></li>
                 <li><a href="#">Контакты</a></li>
                 <li><a href="#">О нас</a></li>
             </ul>
         </div>
+        <form action="/submit" method="POST" id="order_form" class="ordering-container">
+            <div class="form-adress">
+                <span class="form-adress-title">1. Контактные данные</span>
+                <div class="input-field-container appear contacts">
+                    <input class="input-field in-contacts name" type="text" id="adress-name" name="name" placeholder="Имя">
+                    <input class="input-field in-contacts surname" type="text" id="adress-surname" name="surname" placeholder="Фамилия">
+                    <input class="input-field in-contacts phone" type="text" id="adress-number" name="phone" placeholder="Номер телефона">
+                    <input class="input-field in-contacts mail" type="text" id="adress-mail" name="mail" placeholder="Э-почта">
+                </div>
+                <button class="btn-continue open" type="button">Далее</button>
+            </div>
+            <div class="form-delivery">
+                <span class="form-delivery-title checked">2. Доставка</span>
+                <div class="input-field-container delivery">
+                    <select class="input-field in-delivery country" id="delivery-country" title="country" name="country">
+                        <option value="Latvia">Латвия</option>
+                        <option value="Lithuania">Литва</option>
+                        <option value="Estonia">Эстония</option>
+                    </select>
+                    <select class="input-field in-delivery city" id="delivery-city" title="city" name="city">
+                        <option value="Riga">Рига</option>
+                        <option value="Daugavpils">Даугавпилс</option>
+                        <option value="Jurmala">Юрмала</option>
+                        <option value="Ventspils">Вентспилс</option>
+                    </select>
+                    <input class="input-field in-delivery zip-code" type="text" id="delivery-zip-code" name="postcode" placeholder="Почтовый индекс">
+                    <input class="input-field in-delivery street-ad" type="text" id="delivery-street-ad" name="street" placeholder="Улица">
+                    <input class="input-field comment" type="text" id="delivery-comment" name="comment" placeholder="Комментарий">
+                </div>
+                <button class="btn-continue-s" type="button">Далее</button>
+            </div>
+            <input type="hidden" name="itemsArray" value=''>
+            <button class="ok" action="/submit" method="POST" type="submit" style="height: 30%; width: 30%; ">Оплатить</button>
+        </form>
         
-        <div class="form_adress">
-            <form action="/submit" method="POST" id="order_form">
-                <div class="adress_name">
-                    <input class="adress_input name" type="text" id="adress-name" name="name" placeholder="Ваше имя">
-                </div>
-                <div class="adress_surname">
-                    <input class="adress_input surname" type="text" id="adress-surname" name="surname" placeholder="Ваша фамилия">
-                </div>
-                <div class="adress_phone">
-                    <input class="adress_input phone" type="text" id="adress-number" name="phone" placeholder="Номер телефона">
-                </div>
-                <input type="hidden" name="itemsArray" value=''>
-                <button class="submit" type="submit" style="width: 200px; height: 40px; margin: 10px">Submit</button>
-            </form>
-        </div>
+        
     </div>
+    <script>
+        const stripe = Stripe('pk_test_51MhsuUKRgv2CaMZJ0djtR05C858YzNqbjjAmyyhwJgK8HBTtsW66XTdOf2GiZyMJoib2xVhSCiplcjEvxWQSFus300oh8WvTBu');
+        const checkoutButton = document.getElementById('checkout-button');
+        checkoutButton.addEventListener('click', async () => {
+        
+            const response = await fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ amount: 1000, currency: 'usd' }),
+            });
+
+            const { sessionId } = await response.json();
+            const { error } = await stripe.redirectToCheckout({ sessionId });
+            if (error) {
+                alert(error.message);
+            }
+        });
+    </script>
     <script>
         const form = document.querySelector('form');
         const itemsArrayInput = form.querySelector('input[name="itemsArray"]');

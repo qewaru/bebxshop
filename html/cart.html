@@ -11,7 +11,7 @@
 <body>
 	<div class="head_box">
         <div class="hd_inbox">
-            <button class="btn_sidebar">
+            <button title="btn-logo" class="btn_sidebar">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -22,9 +22,18 @@
     </div>
 
     <div class="main_grid">
+        <div class="alert-window">
+            <div class="close-alert">
+                <button class="btn-close-alert"><b>X</b></button>
+            </div>
+            <div class="alert-text">
+                <h1>Ваша корзина пуста</h1>
+                <p>Пополнить коризну Вы можете в нашем каталоге</p>
+            </div>
+        </div>
         <div class="sidebar">
             <ul>
-                <li><a href="index.html" class="nohov"><img class="btn_img_home alo" src="../images/logo_bebxshop.png"></a></li>
+                <li><a href="index.html" class="nohov"><img alt="logo_bebxshop" class="btn_img_home alo" src="../images/logo_bebxshop.png"></a></li>
                 <li><a href="cart.html">Корзина</a></li>
                 <li><a href="#">Контакты</a></li>
                 <li><a href="#">О нас</a></li>
@@ -39,12 +48,12 @@
                     <p class="cart_qt cart_header">КОЛИЧЕСТВО</p>
                 </div>
                 <div class="cart_table">
-                
+                    
                 </div>
             </div>
         </div>
         <button class="btn_payment" type="button" id="payment-button">
-            <a class="a_paylink" href="ordering.html">Оплатить</a>
+            <a class="a_paylink" href="ordering.html">Перейти к оплате</a>
         </button>
     </div>
 </body>
@@ -73,3 +82,4 @@
     <p class="cart_text_total cart_footer" >ОБЩАЯ ЦЕНА:</p>
     <p class="cart_totalprice cart_footer">0</p>
 </div>
+

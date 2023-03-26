@@ -25,22 +25,6 @@ if (container2) {
   });
 }
 
-
-// const descriptButton = document.querySelector(".btn_description");
-// const descriptContent = document.querySelector(".dropdown_descript_content");
-// const deliveryButton = document.querySelector(".btn_delivery");
-// const deliveryContent = document.querySelector(".dropdown_delivery_content");
-
-// descriptButton.addEventListener("click", function() {
-//   descriptContent.style.display = "block";
-//   descriptButton.style.borderBottom = "3px solid aliceblue";
-// });
-
-// deliveryButton.addEventListener("click", function() {
-//   descriptContent.style.display = "block";
-//   deliveryButton.style.borderBottom = "3px solid aliceblue";
-// });
-
 const descButton = document.querySelector(".btn_description");
 const descContent = document.querySelector(".dropdown_descript_content");
 const deliveryButton = document.querySelector(".btn_delivery");

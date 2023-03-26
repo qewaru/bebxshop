@@ -11,7 +11,7 @@
 <body>
 	<div class="head_box">
         <div class="hd_inbox">
-            <button class="btn_sidebar">
+            <button title="btn-logo" class="btn_sidebar">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -22,10 +22,26 @@
     </div>
 
     <div class="main_container">
+        <div class="alert-window-nosize">
+            <div class="close-alert">
+                <button class="btn-close-alert-nosize"><b>X</b></button>
+            </div>
+            <div class="alert-text">
+                <h1>Выберите размер</h1>
+            </div>
+        </div>
+        <div class="alert-window-exists">
+            <div class="close-alert">
+                <button class="btn-close-alert-exists"><b>X</b></button>
+            </div>
+            <div class="alert-text">
+                <p>Вы уже добавили этот продукт в коризну</p>
+            </div>
+        </div>
         <div class="grid_container">
             <div class="sidebar">
                 <ul>
-                    <li><a href="index.html" class="nohov"><img class="btn_img_home alo" src="../images/logo_bebxshop.png"></a></li>
+                    <li><a href="index.html" class="nohov"><img alt="logo_bebxshop" class="btn_img_home alo" src="../images/logo_bebxshop.png"></a></li>
                     <li><a href="cart.html">Корзина</a></li>
                     <li><a href="#">Контакты</a></li>
                     <li><a href="#">О нас</a></li>
@@ -38,26 +54,23 @@
             <div class="pic_box">
                 <img class="item_image" src="../images/greenlight.png" alt="hoodie">
             </div>
-    
-            <div class="hd_text_box">
-                <h1 class="hd_text">BEBXSH GREENLIGHT T-Shirt</h1>
-            </div>
             <div class="text_box">
+                <h1 class="hd_text">BEBXSH GREENLIGHT T-Shirt</h1>
                 <p class="price"><b>24.99 €</b></p>
                 <div class="size_list">
                     <p class="size_text">Размер:</p>
                     <div class="lables">
                         <label class="lradio">
-                            <input type="radio" name="size_check">
+                            <input type="radio" name="size_check" value="S">
+                            <span class="span_text">S</span>
+                        </label>
+                        <label class="lradio">
+                            <input type="radio" name="size_check" value="M">
                             <span class="span_text">M</span>
                         </label>
                         <label class="lradio">
-                            <input type="radio" name="size_check">
+                            <input type="radio" name="size_check" value="L">
                             <span class="span_text">L</span>
-                        </label>
-                        <label class="lradio">
-                            <input type="radio" name="size_check">
-                            <span class="span_text">XL</span>
                         </label>
                     </div>
                 </div>

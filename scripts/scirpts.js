@@ -1,12 +1,11 @@
-
-
-let items = [
+const items = [
     {
         name: 'BEBXSH PARIS Black Hoodie',
         tag: 'parisHoodie',
         img: '../images/black_hoodie.png',
         src: 'merch_cloth1.html',
         price: 29.95,
+        size: '',
         inCart: 0
     },
     {
@@ -15,6 +14,7 @@ let items = [
         img: '../images/greenlight.png',
         src: 'merch_cloth2.html',
         price: 24.99,
+        size: '',
         inCart: 0
     },
     {
@@ -23,6 +23,7 @@ let items = [
         img: '../images/lightning.png',
         src: 'merch_cloth3.html',
         price: 24.99,
+        size: '',
         inCart: 0
     }
 ]
@@ -61,24 +62,55 @@ if (localStorage.getItem("cartItems")) {
 
 function addToCartClicked(event) {
     var button = event.target
-    button.innerText = "Добавлено в коризну"
+
+    var sizeInput = document.querySelector('input[name="size_check"]:checked');
+    var sizeRadios = document.getElementsByName("size_check");
+    var size = sizeInput ? sizeInput.value : null;
+    var sizeSelected = false
+
     addToCartButton = document.getElementsByClassName("add_cart_btn")
     itemName = document.getElementsByClassName("hd_text")
-    for (let i = 0; i < items.length; i++) {
-        for (let j = 0; j < itemName.length; j++) {
-          if (itemName[j].innerText === items[i].name) {
-            if (items[i].inCart == 0) {
-                items[i].inCart += 1;
-                cartArray.push(items[i]);
-                localStorage.setItem("cartItems", JSON.stringify(cartArray));
-                break;
-            } else {
-                alert("Продукт уже в корзине.")
-                return
-            }
-          }
+
+    for (let i = 0; i < sizeRadios.length; i++) {
+        if (sizeRadios[i].checked) {
+            sizeSelected = true;
+            break;
         }
-      }
+    }
+
+    if (sizeSelected) {
+        for (let i = 0; i < items.length; i++) {
+            for (let j = 0; j < itemName.length; j++) {
+              if (itemName[j].innerText === items[i].name) {
+                if (items[i].inCart == 0) {
+                    items[i].inCart += 1;
+                    items[i].size = size
+                    cartArray.push(items[i]);
+                    localStorage.setItem("cartItems", JSON.stringify(cartArray));
+                    console.log(cartArray)
+                    break;
+                } else {
+                    var alertBox = document.querySelector(".alert-window-exists")
+                    alertBox.classList.add("show")
+                    var alertBoxButton = document.querySelector(".btn-close-alert-exists")
+                    alertBoxButton.addEventListener("click", function() {
+                    alertBox.classList.remove("show");
+                    })
+                    return
+                }
+                }
+            }
+        }
+    } else {
+        var alertBox = document.querySelector(".alert-window-nosize")
+        alertBox.classList.add("show")
+        var alertBoxButton = document.querySelector(".btn-close-alert-nosize")
+        alertBoxButton.addEventListener("click", function() {
+        alertBox.classList.remove("show");
+        })
+        return
+    }
+    button.innerText = "Добавлено в коризну"
 }   
 
 var cartItemsData = JSON.parse(localStorage.getItem("cartItems"));
@@ -93,7 +125,12 @@ if (cartItemsData && cartItemsData.length > 0) {
             <a href="${cartItemsData[i].src}"><img class="cart_img" src="${cartItemsData[i].img}" width="150px" height="150px"></a>
             <p class="cart_item_name"><b>${cartItemsData[i].name}</b></p>
             <p class="cart_price">${cartItemsData[i].price} €</p>
-            <input class="cart_quantity" type="number" value="1">
+            <select class="cart_size">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+            <input id="${cartItemsData[i].tag}-quantity" class="cart_quantity" type="number" value="1">
             <button class="btn_remove" type="button">УДАЛИТЬ</button>
         </div>
         <div class="border_line"></div>`
@@ -102,7 +139,8 @@ if (cartItemsData && cartItemsData.length > 0) {
         cartItems.appendChild(cartRow)
         cartRow.getElementsByClassName("btn_remove")[0].addEventListener("click", removeCartItem)
         cartRow.getElementsByClassName("cart_quantity")[0].addEventListener("change", quantityChange)
-        
+        var cartSizeSelect = cartRow.getElementsByClassName("cart_size")[0];
+        cartSizeSelect.value = cartItemsData[i].size;
 }
 var cartRowBottom = document.createElement("div")
 var cartRowBottomContent = `
@@ -189,4 +227,29 @@ function updateCartTotal() {
     }
     total = Math.round(total * 100) / 100
     document.getElementsByClassName("cart_totalprice")[0].innerText = total + "€"
+}
+
+var paymentButton = document.getElementById("payment-button");
+paymentButton.addEventListener("click", checkCartBeforePayment);
+
+function checkCartBeforePayment(event) {
+    event.preventDefault();
+    
+    if (cartArray.length === 0) {
+        // alert("Ваша корзина пуста!");
+        var alertBox = document.querySelector(".alert-window")
+        alertBox.classList.add("show")
+        var alertBoxButton = document.querySelector(".btn-close-alert")
+        alertBoxButton.addEventListener("click", function() {
+                alertBox.classList.remove("show");
+          })
+    } else {
+        for (var i = 0; i < cartArray.length; i++) {
+            var quantityInput = document.getElementById(cartArray[i].tag + "-quantity");
+            var selectedQuantity = quantityInput.value;
+            cartArray[i].quantity = selectedQuantity;
+        }
+        localStorage.setItem("cartItems", JSON.stringify(cartArray));
+        window.location.href = event.target.href;
+    }
 }

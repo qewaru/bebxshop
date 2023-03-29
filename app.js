@@ -101,7 +101,7 @@ app.post('/submit', async (req, res) => {
 
     res.redirect(303, session.url);
   });
-});
+// });
 
 app.post("/success", async (req, res) => {
   const event = req.body;

@@ -62,7 +62,7 @@
                 <button class="btn-continue-s" type="button">Continue</button>
             </div>
             <input type="hidden" name="itemsArray" value=''>
-            <button class="ok appear" action="/submit" method="POST" type="submit" style="height: 30%; width: 30%; ">Pay</button>
+            <button class="ok appear" type="submit" style="height: 30%; width: 30%; ">Pay</button>
         </form>
     </div>
 <!--     <script>
@@ -89,7 +89,7 @@
     <script>
         const form = document.querySelector('form');
         const itemsArrayInput = form.querySelector('input[name="itemsArray"]');
-        const submitButton = form.querySelector('button[type="submit"]');
+        const submitButton = document.querySelector('.ok');
 
         submitButton.addEventListener('click', function(event) {
             event.preventDefault();

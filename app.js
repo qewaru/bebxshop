@@ -12,6 +12,10 @@ app.use("/style", express.static('style'));
 app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/html/index.html');
+});
+
 app.post('/submit', async (req, res) => {
   const itemsArray = req.body.itemsArray
   let cartArray;

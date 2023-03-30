@@ -13,8 +13,15 @@ app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
 app.post('/submit', async (req, res) => {
-  const order_id = Math.floor(Math.random() * 9000) + 1000;
-  console.log(order_id)
+  const itemsArray = req.body.itemsArray
+  let cartArray;
+  try {
+    cartArray = JSON.parse(itemsArray);
+  } catch (err) {
+    console.error(err);
+    return res.status(400).send('Invalid JSON in itemsArray parameter');
+  }
+  console.log(cartArray)
 });
 
 app.listen(process.env.PORT || port, () => {

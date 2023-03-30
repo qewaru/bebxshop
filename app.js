@@ -36,6 +36,8 @@ const transporter = nodemailer.createTransport({
 var globalEmail = ''
 var globalOrderId = null
 
+console.log('kinda work')
+
 app.post('/submit', async (req, res) => {
   const { name, surname, phone, mail, itemsArray, country, city, postcode, street, comment} = req.body;
   globalEmail = req.body.mail

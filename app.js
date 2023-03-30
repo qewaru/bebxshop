@@ -12,8 +12,9 @@ app.use("/style", express.static('style'));
 app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/html/index.html');
+app.options('/api/endpoint', (req, res) => {
+  res.setHeader('Allow', 'POST');
+  res.status(200).end();
 });
 
 app.post('/submit', async (req, res) => {

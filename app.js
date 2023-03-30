@@ -12,9 +12,12 @@ app.use("/style", express.static('style'));
 app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
-app.options('/submit', (req, res) => {
-  res.setHeader('allow', 'POST');
-  res.status(200).end();
+app.use(cors());
+
+const allowedMethods = ['GET', 'POST', 'PUT', 'DELETE'];
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Methods', allowedMethods.join(','));
+  next();
 });
 
 app.post('/submit', async (req, res) => {

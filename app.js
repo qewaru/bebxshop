@@ -13,7 +13,7 @@ app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
 app.options('/submit', (req, res) => {
-  res.setHeader('Allow', 'POST');
+  res.setHeader('allow', 'POST');
   res.status(200).end();
 });
 

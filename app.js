@@ -12,7 +12,7 @@ app.use("/style", express.static('style'));
 app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
-app.options('/api/endpoint', (req, res) => {
+app.options('/submit', (req, res) => {
   res.setHeader('Allow', 'POST');
   res.status(200).end();
 });

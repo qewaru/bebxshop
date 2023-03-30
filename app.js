@@ -94,8 +94,8 @@ app.post('/submit', async (req, res) => {
         }
       }),
       mode: 'payment',
-      success_url: 'http://localhost:8000/submit.html',
-      cancel_url: 'http://localhost:8000/cancel.html',
+      success_url: 'https://bebxshop.cyclic.app/html/submit.html',
+      cancel_url: 'https://bebxshop.cyclic.app/html/cancel.html',
     });
 
     res.redirect(303, session.url);

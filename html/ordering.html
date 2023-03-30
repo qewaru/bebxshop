@@ -30,7 +30,7 @@
                 <li><a href="#">About us</a></li>
             </ul>
         </div>
-        <form action="/submit" method="POST" id="order_form" class="ordering-container">
+        <form action="/check" method="POST" id="order_form" class="ordering-container">
             <div class="form-adress">
                 <span class="form-adress-title">1. Customer info</span>
                 <div class="input-field-container appear contacts">
@@ -62,7 +62,8 @@
                 <button class="btn-continue-s" type="button">Continue</button>
             </div>
             <input type="hidden" name="itemsArray" value=''>
-            <button class="ok" action="/submit" method="POST" type="submit" style="height: 30%; width: 30%; ">Pay</button>
+<!--             <button class="ok" action="/submit" method="POST" type="submit" style="height: 30%; width: 30%; ">Pay</button> -->
+	    <button class="ok appear" action="/check" method="POST" type="submit" style="height: 30%; width: 30%; ">Pay</button>
         </form>
     </div>
     <script>

@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer')
 
 const port = 8000
 
-const app = express();
+const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())

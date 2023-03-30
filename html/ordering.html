@@ -67,7 +67,8 @@
     </div>
     <script>
         const stripe = Stripe('pk_test_51MhsuUKRgv2CaMZJ0djtR05C858YzNqbjjAmyyhwJgK8HBTtsW66XTdOf2GiZyMJoib2xVhSCiplcjEvxWQSFus300oh8WvTBu');
-        const checkoutButton = document.getElementById('checkout-button');
+        console.log(stripe)
+	const checkoutButton = document.getElementById('checkout-button');
         checkoutButton.addEventListener('click', async () => {
         
             const response = await fetch('/submit', {
@@ -75,9 +76,9 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ amount: 1000, currency: 'usd' }),
+                body: JSON.stringify({ amount: 0, currency: 'eur' }),
             });
-
+		console.log(response)
             const { sessionId } = await response.json();
             const { error } = await stripe.redirectToCheckout({ sessionId });
             if (error) {

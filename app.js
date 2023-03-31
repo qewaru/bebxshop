@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const allowMethods = require('allow-methods')
+// const allowMethods = require('allow-methods')
 const cors = require('cors')
 
 const port = 8000
@@ -14,14 +14,7 @@ app.use("/style", express.static('style'));
 app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
-// app.use(cors());
-
-// const allowedMethods = ['GET', 'POST', 'PUT', 'DELETE'];
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Methods', allowedMethods.join(','));
-//   next();
-// });
-
+app.use(cors());
 app.use('/submit', allowMethods(['GET', 'POST']))
 
 app.post('/submit', cors(), (req, res) => {

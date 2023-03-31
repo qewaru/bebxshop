@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/submit', cors(), async (req, res) => {
+app.post('/submit', cors(), (req, res) => {
   const itemsArray = req.body.itemsArray
   let cartArray;
   try {

@@ -17,7 +17,7 @@ app.use("/scripts", express.static('scripts'));
 app.use(cors());
 app.use('/submit', allowMethods(['GET', 'POST']))
 
-app.post('/submit', cors(), (req, res) => {
+app.post('/submit', (req, res) => {
   const itemsArray = req.body.itemsArray
   let cartArray;
   try {

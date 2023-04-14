@@ -17,7 +17,7 @@ app.use("/scripts", express.static('scripts'));
 
 app.use(allowMethods(['POST']))
 
-app.get("/a", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 

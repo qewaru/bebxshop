@@ -15,6 +15,10 @@ app.use("/scripts", express.static('scripts'));
 
 app.use(allowMethods(['POST']))
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.post('/submit', (req, res) => {
   const itemsArray = req.body.itemsArray
   let cartArray;

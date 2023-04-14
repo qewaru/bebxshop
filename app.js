@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 // const allowMethods = require('allow-methods')
-const cors = require('cors')
+// const cors = require('cors')
 
 const port = 8000
 
@@ -14,7 +14,6 @@ app.use("/style", express.static('style'));
 app.use("/images", express.static('images'));
 app.use("/scripts", express.static('scripts'));
 
-app.use(cors());
 app.use('/submit', allowMethods(['GET', 'POST']))
 
 app.post('/submit', (req, res) => {

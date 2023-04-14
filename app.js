@@ -1,3 +1,5 @@
+// import { authenticateUser } from "/auth.js"
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const allowMethods = require('allow-methods')
@@ -15,7 +17,7 @@ app.use("/scripts", express.static('scripts'));
 
 app.use(allowMethods(['POST']))
 
-app.get("/", (req, res) => {
+app.get("/a", (req, res) => {
   res.send("Hello World!");
 });
 

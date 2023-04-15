@@ -29,8 +29,6 @@ app.post('/submit', async (req, res) => {
     return res.status(400).send('Invalid JSON in itemsArray parameter');
   }
   
-  
-
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],

@@ -14,9 +14,9 @@ app.use(express.static('public'));
 // app.use("/images", express.static('images'));
 // app.use("/scripts", express.static('scripts'));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
 
 app.post('/submit', (req, res) => {
   const itemsArray = req.body.itemsArray

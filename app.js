@@ -27,7 +27,6 @@ app.post('/submit', async (req, res) => {
     console.error(err);
     return res.status(400).send('Invalid JSON in itemsArray parameter');
   }
-  console.log(cartArray)
   
   console.log(`Name: ${name}, Surname: ${surname}, Phone: ${phone}, Email: ${mail}, Array: ${JSON.stringify(cartArray)}`);
 

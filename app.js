@@ -2,7 +2,6 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const allowMethods = require('allow-methods')
 
 const port = 8000
 
@@ -10,12 +9,10 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
-app.use(express.static('html'));
-app.use("/style", express.static('style'));
-app.use("/images", express.static('images'));
-app.use("/scripts", express.static('scripts'));
-
-app.use(allowMethods(['POST']))
+app.use(express.static('public'));
+// app.use("/style", express.static('style'));
+// app.use("/images", express.static('images'));
+// app.use("/scripts", express.static('scripts'));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

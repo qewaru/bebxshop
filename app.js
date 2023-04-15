@@ -18,7 +18,7 @@ app.use(express.static('public'));
 //   res.send("Hello World!");
 // });
 
-app.post('/submit', (req, res) => {
+app.post('/submit', async (req, res) => {
   const itemsArray = req.body.itemsArray
   let cartArray;
   try {

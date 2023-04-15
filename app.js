@@ -28,6 +28,30 @@ app.post('/submit', (req, res) => {
     return res.status(400).send('Invalid JSON in itemsArray parameter');
   }
   console.log(cartArray)
+  
+  console.log(`Name: ${name}, Surname: ${surname}, Phone: ${phone}, Email: ${mail}, Array: ${JSON.stringify(cartArray)}`);
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: cartArray.map(item => {
+        return {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: item.name,
+            },
+            unit_amount: item.price * 100,
+          },
+          quantity: item.quantity,
+        }
+      }),
+      mode: 'payment',
+      success_url: 'http://localhost:8000/submit.html',
+      cancel_url: 'http://localhost:8000/cancel.html',
+    });
+
+    res.redirect(303, session.url);
+  });
 });
 
 app.listen(process.env.PORT || port, () => {

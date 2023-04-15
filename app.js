@@ -52,7 +52,6 @@ app.post('/submit', async (req, res) => {
 
     res.redirect(303, session.url);
   });
-});
 
 app.listen(process.env.PORT || port, () => {
   console.log('Server started on port 8000');

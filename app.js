@@ -23,12 +23,13 @@ app.post('/submit', async (req, res) => {
   let cartArray;
   try {
     cartArray = JSON.parse(itemsArray);
+    console.log(cartArray)
   } catch (err) {
     console.error(err);
     return res.status(400).send('Invalid JSON in itemsArray parameter');
   }
   
-  console.log(`Name: ${name}, Surname: ${surname}, Phone: ${phone}, Email: ${mail}, Array: ${JSON.stringify(cartArray)}`);
+  
 
   try {
     const session = await stripe.checkout.sessions.create({

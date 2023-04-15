@@ -30,6 +30,7 @@ app.post('/submit', async (req, res) => {
   
   console.log(`Name: ${name}, Surname: ${surname}, Phone: ${phone}, Email: ${mail}, Array: ${JSON.stringify(cartArray)}`);
 
+  try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: cartArray.map(item => {
@@ -45,12 +46,16 @@ app.post('/submit', async (req, res) => {
         }
       }),
       mode: 'payment',
-      success_url: 'http://localhost:8000/submit.html',
-      cancel_url: 'http://localhost:8000/cancel.html',
+      success_url: 'https://bebxshop.cyclic.app/html/submit.html',
+      cancel_url: 'https://bebxshop.cyclic.app/html/cancel.html',
     });
 
     res.redirect(303, session.url);
-  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error creating Stripe session');
+  }
+});
 
 app.listen(process.env.PORT || port, () => {
   console.log('Server started on port 8000');

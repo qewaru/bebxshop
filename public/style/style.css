@@ -201,7 +201,13 @@ a {
     height: 85%;
 }
 
-.img {
+.cl_link {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.img-cloth {
     margin-top: 15px;
     width: 75%;
     height: 100%;

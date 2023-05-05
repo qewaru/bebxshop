@@ -253,8 +253,8 @@ button {
 }
 
 .item_image {
-    width: 500px;
-    height: 500px;
+    width: 90%;
+    height: 90%;
 }
 
 .link_tree {
@@ -269,23 +269,18 @@ button {
     justify-self: center;
     justify-content: center;
     align-items: center;
-    width: 550px;
-    height: 550px;
+    aspect-ratio: 1/1;
+    width: 85%;
+    max-width: 550px;
+    max-height: 550px;
     background-color: aliceblue;
     border-radius: 15px;
 }
 
-/* .hd_text_box {
-    display: flex;
-    grid-column: 2;
-    grid-row: 2;
-    margin-top: 0px;
-} */
-
 .hd_text {
     color: aliceblue;
     font-size: 45px;
-    margin-bottom: 30px;
+    margin-bottom: 7%;
 }
 
 .back_link {
@@ -304,21 +299,21 @@ button {
 }
 
 .size_list {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
     color: aliceblue;
     margin-top: 50px;
     border: 3px solid aliceblue;
     border-radius: 15px;
-    height: auto;
-    width: 540px;
+    max-width: 540px !important;
+    width: 90%;
     font-size: 30px;
     padding: 10px;
-    
 }
 
 .lables {
-    margin-left: 270px;
-    justify-content: flex-end;
+    margin-right: 5%;
+    justify-self: flex-end;
 }
 
 .span_text {
@@ -337,7 +332,8 @@ button {
     transition: background-color 0.5s ease-in;
     transition: color 0.2s ease-in;
     
-    width: 566px;
+    max-width: 566px;
+    width: 90%;
     margin-top: 25px;
     padding: 10px;
 }
@@ -660,7 +656,6 @@ button {
     justify-self: center;
     
     cursor: pointer;
-    /* border-radius: 5px; */
     border: solid 2px black;
     background-color: aliceblue;
     color: black;
@@ -803,125 +798,28 @@ button {
     .item_price {
         font-size: 20px
     }
+}
 
-
-    .main_container {
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 5% 50% 20% 45%;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgb(17, 17, 17);
-    }
-
-    .link_tree {
-        display: flex;
-        margin: 0;
-        place-self: center;
-    }
-
-    .back_link {
-        margin-right: 5px;
-    }
-    
-    .item_image {
-        width: 100%;
-        height: 100%;
-    }
-    
-    .pic_box {
-        display: flex;
-        place-self: center;
-        justify-content: center;
-        align-items: center;
-        width: 80%;
-        height: 85%;
-        background-color: aliceblue;
-        border-radius: 15px;
-        grid-row: 2;
-    }
-
-    .hd_text_box {
-        display: flex;
-        place-self: center;
-        grid-column: 1;
-        grid-row: 3;
-        margin-top: 0px;
-        width: 80%;
-        height: 100%;
-    }
-
+@media screen and (1000px >= width > 700px) {
     .hd_text {
-        text-align: center;
-        color: aliceblue;
-        font-size: 30px ;
+        font-size: 35px;
     }
 
-    .text_box {
-        margin: 0;
-        grid-column: 1;
-        grid-row: 4;
-    }
-    
-    .price {
-        text-align: center;
-        color: aliceblue;
-        font-size: 25px;
-    }
-    
-    .size_list {
-        display: flex;
-        color: aliceblue;
-        margin: 0;
-        border: 3px solid aliceblue;
-        border-radius: 15px;
-        height: 40px;
-        width: 80%;
+    .price, .size_list, .add_cart_btn, .span_text {
         font-size: 20px;
-        padding: 10px;
-        justify-content: center;
-        align-items: center;
     }
-    
-    .lables {
-        margin-left: 10%;
-        justify-content: flex-end;
+
+    .btn_description, .btn_delivery {
+        font-size: 20px;
     }
-    
-    .span_text {
+
+    .dropdown_delivery_content, .dropdown_descript_content {
         font-size: 15px;
     }
-    
-    .add_cart_btn {
-        display: flex;
-        color: aliceblue;
-        background-color: transparent;
-        border-radius: 15px;
-        border: 3px solid aliceblue;
-        cursor: pointer;
-        
-        justify-content: center;
-        font-size: 25px;
-        
-        width: 80%;
-        margin-top: 20px;
-        padding: 10px;
-    }
-    
-    .add_cart_btn:hover {
-        background-color: aliceblue;
-        color: black;
-    }
 }
 
-@media screen and (700px >= height >= 400px) {
-    .body {
-        height: 100%;
-        overflow: auto;
-    }
-    
-}
+
+
 
 /* GRID HOMEPAGE
 

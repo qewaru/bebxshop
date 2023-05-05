@@ -3,6 +3,7 @@
     margin: 0;
 	padding: 0;
     font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
 }
 
 /* ANIMATIONS */
@@ -124,7 +125,7 @@ button {
 
 .sidebar {
 	background-color: rgb(25, 25, 25);
-	height: 100vh;
+	height: 100%;
 	left: -300px;
 	position: absolute;
 	top: 0;
@@ -259,7 +260,7 @@ button {
 
 .link_tree {
     display: flex;
-    margin-top: 30px;
+    margin-top: 5%;
     margin-left: 20%;
 }
 
@@ -280,7 +281,7 @@ button {
 .hd_text {
     color: aliceblue;
     font-size: 45px;
-    margin-bottom: 7%;
+    margin-bottom: 3%;
 }
 
 .back_link {
@@ -288,6 +289,8 @@ button {
 }
 
 .text_box {
+    display: flex;
+    flex-direction: column;
     margin-left: 3%;
     grid-column: 2;
     grid-row: 2;
@@ -302,10 +305,10 @@ button {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     color: aliceblue;
-    margin-top: 50px;
+    margin-top: 10%;
     border: 3px solid aliceblue;
     border-radius: 15px;
-    max-width: 540px !important;
+    max-width: 620px;
     width: 90%;
     font-size: 30px;
     padding: 10px;
@@ -332,9 +335,9 @@ button {
     transition: background-color 0.5s ease-in;
     transition: color 0.2s ease-in;
     
-    max-width: 566px;
+    max-width: 620px;
     width: 90%;
-    margin-top: 25px;
+    margin-top: 4%;
     padding: 10px;
 }
 
@@ -345,9 +348,8 @@ button {
 
 .dropdown_bottom {
     display: block;
-    /* position: relative; */
-    margin-top: 30px;
-    width: 65%;
+    margin-top: 7%;
+    width: 50%;
 }
 
 .btn_container {
@@ -733,10 +735,6 @@ button {
 }
 
 @media screen and (700px >= width) {
-    body {
-        height: 100%;
-    }
-
     .hd_inbox {
         grid-template-columns: repeat(3, 33.3%);
     }
@@ -805,11 +803,7 @@ button {
         font-size: 35px;
     }
 
-    .price, .size_list, .add_cart_btn, .span_text {
-        font-size: 20px;
-    }
-
-    .btn_description, .btn_delivery {
+    .price, .size_list, .add_cart_btn, .span_text, .btn_description, .btn_delivery {
         font-size: 20px;
     }
 
@@ -818,6 +812,48 @@ button {
     }
 }
 
+@media screen and (700px >= width > 400px) {
+    .grid_container {
+        grid-template-columns: 100%;
+        grid-template-rows: 5% 47.5% 47.5%;
+    }
+
+    .link_tree, .pic_box, .text_box {
+        grid-column: 1;
+    }
+
+    .link_tree {
+        justify-self: center;
+        margin: 2.5%;
+        grid-row: 1;
+    }
+
+    .pic_box {
+        grid-row: 2;
+    }
+
+    .text_box {
+        margin: 0;
+        grid-row: 3;
+    }
+
+    .hd_text {
+        font-size: 20px;
+        margin-bottom: 2.5%;
+    }
+
+    .size_list, .add_cart_btn, .dropdown_bottom, .hd_text, .price {
+        place-self: center;
+    }
+
+    .price, .size_list, .add_cart_btn, .span_text, .btn_description, .btn_delivery {
+        font-size: 15px;
+    }
+
+    .dropdown_delivery_content, .dropdown_descript_content {
+        font-size: 10px;
+    }
+}
 
 
 

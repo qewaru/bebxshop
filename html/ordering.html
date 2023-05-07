@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <script src="../scripts/scirpts.js" async></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../scripts/ordering.js" async></script>
+    <title>BSHOP | PAYMENT</title>
+</head>
+<body>
+	<div class="head_box">
+        <div class="hd_inbox">
+            <button title="btn-logo" class="btn_sidebar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="index.html" class="top_button"><img src="../images/logo_bebxshop.png" alt="home" class="btn-img-home"></a>
+            <a href="cart.html" class="top_button btn_cart"><img src="../images/shoppingcart.png" alt="home" class="img-btn-cart"></a>
+        </div>
+    </div>
+    <div class="main_container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="index.html" class="nohov"><img alt="logo" class="btn-img-home alo" src="../images/logo_bebxshop.png"></a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">About us</a></li>
+            </ul>
+        </div>
+        <form action="/submit" method="POST" id="order_form" class="ordering-container">
+            <div class="form-adress">
+                <span class="form-adress-title">1. Customer info</span>
+                <div class="input-field-container appear contacts">
+                    <input class="input-field in-contacts name" type="text" id="adress-name" name="name" placeholder="Name">
+                    <input class="input-field in-contacts surname" type="text" id="adress-surname" name="surname" placeholder="Last name">
+                    <input class="input-field in-contacts phone" type="text" id="adress-number" name="phone" placeholder="Phone number">
+                    <input class="input-field in-contacts mail" type="text" id="adress-mail" name="mail" placeholder="E-mail">
+                </div>
+                <button class="btn-continue open" type="button">Continue</button>
+            </div>
+            <div class="form-delivery">
+                <span class="form-delivery-title checked">2. Delivery</span>
+                <div class="input-field-container delivery">
+                    <select class="input-field in-delivery country" id="delivery-country" title="country" name="country">
+                        <option value="Latvia">Lavtia</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Estonia">Estonia</option>
+                    </select>
+                    <select class="input-field in-delivery city" id="delivery-city" title="city" name="city">
+                        <option value="Riga">Riga</option>
+                        <option value="Daugavpils">Daugavpils</option>
+                        <option value="Jurmala">Jurmala</option>
+                        <option value="Ventspils">Ventspils</option>
+                    </select>
+                    <input class="input-field in-delivery zip-code" type="text" id="delivery-zip-code" name="postcode" placeholder="ZIP code">
+                    <input class="input-field in-delivery street-ad" type="text" id="delivery-street-ad" name="street" placeholder="Street">
+                    <input class="input-field comment" type="text" id="delivery-comment" name="comment" placeholder="Comment">
+                </div>
+                <button class="btn-continue-s" type="button">Continue</button>
+            </div>
+            <input type="hidden" name="itemsArray" value=''>
+            <button class="ok" action="/submit" method="POST" type="submit">Pay</button>
+        </form>
+    </div>
+    
+    <script>
+        const stripe = Stripe('pk_test_51MhsuUKRgv2CaMZJ0djtR05C858YzNqbjjAmyyhwJgK8HBTtsW66XTdOf2GiZyMJoib2xVhSCiplcjEvxWQSFus300oh8WvTBu');
+        const checkoutButton = document.getElementById('checkout-button');
+        checkoutButton.addEventListener('click', async () => {
+        
+            const response = await fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ amount: 1000, currency: 'eur' }),
+            });
+
+            const { sessionId } = await response.json();
+            const { error } = await stripe.redirectToCheckout({ sessionId });
+            if (error) {
+                alert(error.message);
+            }
+        });
+    </script>
+    <script>
+        const form = document.querySelector('form');
+        const itemsArrayInput = form.querySelector('input[name="itemsArray"]');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            itemsArrayInput.value = JSON.stringify(cartArray);
+            form.submit();
+        });
+    </script>
+</body>
+</html>

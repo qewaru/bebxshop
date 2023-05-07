@@ -123,7 +123,7 @@ button {
 
 .sidebar {
 	background-color: rgb(25, 25, 25);
-	height: 100%;
+	height: 100vh;
 	left: -300px;
 	position: absolute;
 	top: 0;
@@ -416,21 +416,26 @@ button {
 
 .white_box {
     display: flex;
+    flex-direction: column;
     justify-self: center;
-    align-self: flex-start;
     overflow: auto;
     grid-row: 1;
     border-radius: 8px;
     background-color: aliceblue;
     width: 70%;
     height: 100%;
-    box-sizing: border-box;
 }
 
-.cart_box {
+/* .cart_box {
     width: 100%;
     margin: 10px;
     justify-content: center;
+} */
+
+.title-cart {
+    font-size: 45px; 
+    place-self: center;
+    margin-top: 1.5%;
 }
 
 .cart_row_header {
@@ -438,11 +443,15 @@ button {
     grid-template-columns: 19% 41% 29%;
     width: 100%;
     text-align: right;
-    margin-top: 50px;
+    margin-top: 5%;
 }
 
 .cart_header {
     margin: 5px;
+}
+
+.cart_item_name {
+    font-size: 20px;
 }
 
 .cart_row_footer {
@@ -465,24 +474,28 @@ button {
 
 .cart_table {
     display: grid;
-    margin-top: 15px;
+    margin-top: 1.5%;
     border-top: solid 1px black;
     width: 100%;
 }
 
 .cart_row {
     display: grid;
-    grid-template-columns: 15% 10% 30% 10% 10% 10%;
-    grid-template-rows: 1;
+    grid-template-columns: 15% 20% 20% 10% 10% 15%;
+    grid-template-rows: 100%;
     justify-content: center;
     margin: 10px;
-    width: 100%;
+    width: 99%;
     align-items: center;
 }
 
 .cart_empty {
     margin-top: 5%;
     text-align: center;
+}
+
+.cart_img {
+    width: 100%;
 }
 
 .border_line {
@@ -519,8 +532,8 @@ button {
 }
 
 .btn_remove {
-    height: 60px;
-    width: 160px;
+    aspect-ratio: 3/1;
+    width: 100%;
     border-radius: 5px;
     border: solid 2px black;
     background-color: aliceblue;
@@ -846,7 +859,7 @@ button {
     }
 }
 
-@media screen and (1000px >= width > 700px) {
+@media screen and (1024px >= width > 700px) {
     .title-text {
         font-size: 20px;
     }
@@ -857,9 +870,25 @@ button {
     .item_price {
         font-size: 20px
     }
+
+    .white_box {
+        width: 90%;
+    }
+
+    .title-cart {
+        font-size: 30px;
+    }
+
+    .cart_price, .cart_size, .cart_quantity, .cart_row_footer {
+        font-size: 20px;
+    }
+
+    .btn_payment {
+        width: 50%;
+    }
 }
 
-@media screen and (700px >= width > 350px) {
+@media screen and (700px >= width > 400px) {
     .main_cont {
         height: 100%;
         width: 100%;
@@ -878,7 +907,6 @@ button {
     .items {
         grid-row: none;
         grid-column: 1;
-        /* height: 70%; */
     }
 
     .cloth1 {
@@ -906,9 +934,25 @@ button {
         font-size: 20px;
     }
 
+    .white_box {
+        width: 90%;
+    }
+
+    .title-cart {
+        font-size: 27px;
+    }
+
+    .cart_price, .cart_size, .cart_quantity, .cart_row_footer, .cart_item_name, .cart_header {
+        font-size: 15px;
+    }
+
+    .btn_payment {
+        width: 50%;
+    }
+
 }
 
-@media screen and (350px >= width) {
+@media screen and (400px >= width) {
     .main_cont {
         height: 100%;
         width: 100%;
@@ -953,6 +997,26 @@ button {
 
     .item_name, .item_price {
         font-size: 15px;
+    }
+
+    .white_box {
+        width: 90%;
+    }
+
+    .title-cart {
+        font-size: 20px;
+    }
+
+    .cart_price, .cart_size, .cart_quantity, .cart_row_footer, .cart_item_name, .cart_header, .btn_remove {
+        font-size: 10px;
+    }
+
+    .btn_remove, .cart_quantity, .cart_size {
+        border: 1px solid black;
+    }
+
+    .btn_payment {
+        width: 90%;
     }
 }
 
@@ -1012,7 +1076,7 @@ button {
         font-size: 10px;
     }
 
-    .alert-window-exists, .alert-window-incart, .alert-window-nosize {
+    .alert-window-exists, .alert-window-nosize, .alert-window {
         aspect-ratio: 16/9;
         width: 80%;
     }
@@ -1065,7 +1129,7 @@ button {
         font-size: 10px;
     }
 
-    .alert-window-exists, .alert-window-nosize {
+    .alert-window-exists, .alert-window-nosize, .alert-window {
         aspect-ratio: 16/9;
         width: 80%;
         max-height: 150px;

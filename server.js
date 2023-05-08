@@ -116,8 +116,8 @@ app.post('/submit', async (req, res) => {
             }
           }),
           mode: 'payment',
-          success_url: 'http://localhost:8000/submit.html',
-          cancel_url: 'http://localhost:8000/cancel.html',
+          success_url: 'http://https://bebxshop.onrender.com/submit.html',
+          cancel_url: 'http://https://bebxshop.onrender.com/cancel.html',
         })
         res.redirect(303, session.url);
       })

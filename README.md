@@ -30,5 +30,5 @@ In the future, I plan to add couple of updates to bebxshop:
 * JS: on some devices cart features doesn't work.
 
 ## Current link
-
+**Due to hosting platform issues, when website is opened in first time, it may took couple of seconds to load index page.** 
 [bebxshop.onrender.com](https://bebxshop.onrender.com)
